@@ -41,8 +41,7 @@ jobs:
         run: |
           cd src/desktop_generator_gtk
           tar -czf ../../bohatska-desktop-linux-x64.tar.gz \
-            bohatska_desktop \
-            assets/
+            bohatska_desktop
 
       - name: "Зберігаємо артефакт — бо навіть усвідомлення потребує кешу"
         uses: actions/upload-artifact@v4
@@ -71,8 +70,7 @@ jobs:
         run: |
           cd src/desktop_generator_gtk
           tar -czf ../../bohatska-desktop-macos-arm64.tar.gz \
-            bohatska_desktop \
-            assets/
+            bohatska_desktop
 
       - name: "Зберігаємо артефакт"
         uses: actions/upload-artifact@v4
@@ -108,10 +106,8 @@ jobs:
       - name: "Пакуємо в zip — бо Windows не готовий до tar"
         shell: pwsh
         run: |
-          Compress-Archive -Path @(
-            "src/desktop_generator_gtk/bohatska_desktop.exe",
-            "src/desktop_generator_gtk/assets"
-          ) -DestinationPath bohatska-desktop-win-x64.zip
+          Compress-Archive -Path "src/desktop_generator_gtk/bohatska_desktop.exe" `
+            -DestinationPath bohatska-desktop-win-x64.zip
 
       - name: "Зберігаємо артефакт"
         uses: actions/upload-artifact@v4
