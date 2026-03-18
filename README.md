@@ -367,29 +367,103 @@ $ ./bohatska_bruteforce --happiness
 
 | Платформа | Файл | Як поставити |
 |-----------|------|-------------|
-| 🐧 Linux (x64) | [`bohatska-desktop-linux-x64.tar.gz`](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest) | `tar xzf *.tar.gz && ./bohatska_desktop` |
-| 🍎 macOS (ARM) | [`bohatska-desktop-macos-arm64.tar.gz`](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest) | `brew install gtk+3`, потім `tar xzf *.tar.gz && ./bohatska_desktop` |
-| 🪟 Windows (x64) | [`bohatska-desktop-win-x64.zip`](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest) | Розпакуй і запусти `bohatska_desktop.exe` |
-| 📦 Source | [`bohatska-desktop-source.tar.gz`](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest) | `make && ./bohatska_desktop` (потрібен `libgtk-3-dev`) |
+| Платформа | Файл |
+|-----------|------|
+| 🐧 Linux (x64) | [`bohatska-desktop-linux-x64.tar.gz`](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest) |
+| 🍎 macOS (ARM) | [`bohatska-desktop-macos-arm64.tar.gz`](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest) |
+| 🪟 Windows (x64) | [`bohatska-desktop-win-x64.zip`](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest) |
+| 📦 Вихідний код | [`bohatska-desktop-source.tar.gz`](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest) |
 
-### Збірка з вихідного коду
+### Як запустити
+
+<details>
+<summary>🍎 macOS (Apple Silicon / ARM)</summary>
+
+**Крок 1.** Встанови [Homebrew](https://brew.sh/) якщо ще не маєш. Відкрий Terminal і встав:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+**Крок 2.** Встанови GTK3 (це бібліотека для графічного інтерфейсу, без неї не запуститься):
+
+```bash
+brew install gtk+3
+```
+
+**Крок 3.** Завантаж файл `bohatska-desktop-macos-arm64.tar.gz` з [Releases](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest).
+
+**Крок 4.** Відкрий Terminal, перейди в папку з завантаженим файлом і запусти:
+
+```bash
+cd ~/Downloads
+tar xzf bohatska-desktop-macos-arm64.tar.gz
+./bohatska_desktop
+```
+
+Якщо macOS скаже "cannot be opened because the developer cannot be verified":
+
+```bash
+xattr -d com.apple.quarantine bohatska_desktop
+./bohatska_desktop
+```
+
+</details>
+
+<details>
+<summary>🐧 Linux (Ubuntu / Debian)</summary>
+
+**Крок 1.** Встанови GTK3 runtime:
+
+```bash
+sudo apt install libgtk-3-0
+```
+
+**Крок 2.** Завантаж `bohatska-desktop-linux-x64.tar.gz` з [Releases](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest).
+
+**Крок 3.** Розпакуй і запусти:
+
+```bash
+cd ~/Downloads
+tar xzf bohatska-desktop-linux-x64.tar.gz
+chmod +x bohatska_desktop
+./bohatska_desktop
+```
+
+</details>
+
+<details>
+<summary>🪟 Windows</summary>
+
+**Крок 1.** Завантаж `bohatska-desktop-win-x64.zip` з [Releases](https://github.com/ChuprinaDaria/-Not-Awesome-Claude-N.-Bohatska/releases/latest).
+
+**Крок 2.** Розпакуй ZIP у будь-яку папку.
+
+**Крок 3.** Запусти `bohatska_desktop.exe`.
+
+> Примітка: Windows Defender може показати попередження — натисни "More info" → "Run anyway".
+
+</details>
+
+<details>
+<summary>📦 Збірка з вихідного коду (будь-яка ОС)</summary>
+
+Потрібен GCC і GTK3 development headers.
 
 ```bash
 # Ubuntu/Debian
-sudo apt install libgtk-3-dev
-cd src/desktop_generator_gtk
-make
-./bohatska_desktop
+sudo apt install libgtk-3-dev gcc make
 
 # macOS
 brew install gtk+3
+
+# Збірка
 cd src/desktop_generator_gtk
 make
 ./bohatska_desktop
-
-# Або make therapy — бо назва має відповідати суті
-make therapy
 ```
+
+</details>
 
 ### Що всередині
 
